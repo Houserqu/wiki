@@ -1,4 +1,4 @@
-<img src='images/cover.jpg' width=100 />
+<img src='images/cover.jpg' width=150 />
 
 ## 目录
 
