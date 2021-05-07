@@ -59,3 +59,4 @@ hooks 的确可以简化一些 state 、生命周期相关的代码，我觉得�
 自定义 hooks 完全依赖状态变化来触发，导致在处理用户通过事件触发一些操作的时候，实现起来很蹩脚，例如每次点击按钮请求数据、mount 阶段不自动执行 hooks。
 
 [hooks 使用笔记](React%20a058f306347c49799abad080b9dce034/hooks%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%20b3bf45c47b6f44edb7998efdeb4c835c.md)
+

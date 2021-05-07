@@ -1,7 +1,7 @@
 # Nginx
 
 > 一些参考文档：
-[https://juejin.im/post/6844903944267759624#heading-46](https://juejin.im/post/6844903944267759624#heading-46)
+[nginx 这一篇就够了](https://juejin.im/post/6844903944267759624#heading-46)
 
 ## 配置文件说明
 
@@ -311,6 +311,8 @@ http{
 ```
 
 ## 负载均衡
+
+>  [五分钟看懂 Nginx 负载均衡](https://juejin.cn/post/6844904106541203464)
 
 1、轮询（默认）
 

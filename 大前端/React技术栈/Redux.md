@@ -16,3 +16,4 @@ Redux 的中间件提供的是位于 action 被发起之后，到达 reducer 之
 
 操作结束时，系统自动送出第二个 Action 呢？
 thunk中间允许一个store.dispatch接受函数作为参数，从而实现一个action在异步结束后出发另外的action
+
