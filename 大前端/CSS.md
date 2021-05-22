@@ -1,4 +1,31 @@
-## 定义
+# CSS
+
+## 动画
+
+[css动画教程](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
+
+### Transition
+
+```css
+img{
+    height:15px;
+    width:15px;
+    display: block;
+    margin:15px auto;
+    transition:1s height;    
+}
+
+img:hover{
+    height: 450px;
+    width: 450px;
+}
+```
+
+## 盒模型
+
+[详解CSS盒模型](http://web.jobbole.com/84092/)
+
+## 模块上下文
 
 浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。
 
@@ -6,7 +33,8 @@
 
 在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)（对于从右到左的格式来说，则触碰到右边缘）。
 
-## 根元素或包含根元素的元素
+### 根元素或包含根元素的元素
+
 浮动元素（元素的 float 不是 none）
 绝对定位元素（元素的 position 为 absolute 或 fixed）
 行内块元素（元素的 display 为 inline-block）
@@ -31,6 +59,23 @@ column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没
 
 
 *****
+
 ##### 参考链接
 
 [深入理解BFC和Margin Collapse](https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html)
+
+## SVG
+
+SVG可缩放矢量图形（ Scalable Vector Graphics ）是基于可扩展标记语言（ XML ），用于描述二维矢量图形的一种图形格式。 **是W3C 推荐标准**。IE8和早期版本都需插件才能使用。
+
+**特点**：
+
+- 任意放缩：用户可以任意缩放图像显示，而不会破坏图像的清晰度、细节等。
+
+- 文本独立：SVG图像中的文字独立于图像，文字保留可编辑和可搜寻的状态。也不会再有字体的限制，用户系统即使没有安装某一字体，也会看到和他们制作时完全相同的画面。
+
+- 较小文件：总体来讲，SVG文件比那些 GIF 和 JPEG 格式的文件要小很多，因而下载也很快。
+
+- 超强显示效果：SVG图像在屏幕上总是边缘清晰，它的清晰度适合任何屏幕分辨率和打印分辨率。
+
+- 超级颜色控制：SVG图像提供一个 1600 万种颜色的调色板，支持 ICC 颜色描述文件标准、 RGB 、线 X 填充、渐变和蒙版。

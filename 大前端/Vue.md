@@ -1,6 +1,6 @@
-# Vue 路由相关
+# Vue
 
-## 一些技巧
+## Vue Router
 
 ### 重载路由页面
 
@@ -14,7 +14,6 @@
 
 ```vue
 <template></template>
-
 <script>
   export default {
     beforeRouteEnter(to, from, next)  {
@@ -25,7 +24,6 @@
     }
   }
 </script>
-
 ```
 
 路由注册：
