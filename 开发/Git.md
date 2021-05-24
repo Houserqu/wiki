@@ -1,6 +1,6 @@
 # Git
 
-[常用命令思维导图](Git%20b8a5ff29aece46eab3a16c3d67073ab0/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%206f21336703f34165ba855ef8a2270f50.md)
+![picture 16](../../images/35549c4ef2122a4530b1e36dd4cf76f0abe9029c97958dbc06c305a9f00b5c92.png)  
 
 ### 添加远程仓库地址
 
