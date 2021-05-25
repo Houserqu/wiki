@@ -1,5 +1,7 @@
 # HTTP
 
+[「查缺补漏」巩固你的HTTP知识体系](https://juejin.cn/post/6857287743966281736)
+
 ## 浏览器缓存
 
 浏览器根据一下两个返回的头信息判断请求操作
@@ -111,3 +113,4 @@ HTTP协议通常承载于TCP协议之上，在HTTP和TCP之间添加一个安全
 [HTTPS 升级指南](http://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html)
 [图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
 
+![img](https://user-images.githubusercontent.com/34484322/89356430-58e32e00-d6f0-11ea-9320-115133c36e3e.png)

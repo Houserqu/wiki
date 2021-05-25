@@ -1,5 +1,9 @@
 # JS基础
 
+## 背景
+
+[ES6、ES7、ES8、ES9、ES10新特性一览](https://juejin.cn/post/6844903811622912014)
+
 ## 闭包
 
 闭包是指能够访问其他作用域变量的函数。[闭包原理解释](https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651553785&idx=1&sn=a8efd632cc52dac510b6dee87b50ccaa&chksm=8025a838b752212e141c83d08f55ce5d56f79e70e0bfca8dea9559175876b021bc41aa741b75&scene=38#wechat_redirect)
@@ -323,6 +327,8 @@ parent.onclick = function(e){
 
 ## Proxy/Reflect
 
+> [Proxy 和 Reflect](https://juejin.cn/post/6844904090116292616)
+
 ### Proxy
 
 #### 定义
@@ -353,10 +359,6 @@ let divProxy = new Proxy(div, {
 // chrome 上会报错：Uncaught TypeError: Illegal invocation
 console.log(divProxy.querySelector('a')); 
 ```
-
-#### 参考
-
-[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
 ### Reflect
 

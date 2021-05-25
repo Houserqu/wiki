@@ -4,9 +4,13 @@
 
 [《TypeScript Deep Dive 中文版》](https://jkchao.github.io/typescript-book-chinese/)
 
+[ 深入理解 TypeScript](https://jkchao.github.io/typescript-book-chinese/)
+
 [基本原理讲解《上帝视角看 TypeScript》](https://mp.weixin.qq.com/s?__biz=MzA3MjU5NjU2NA==&mid=2455504213&idx=1&sn=b1ec8829983ac3425abe76085405e329&chksm=88b3486ebfc4c1786429c143c3a0683a099290d794630b4c055c2961f31d8bda8d1c0e6775d5&scene=21#wechat_redirect)
 
 [类型工具方法](https://juejin.im/post/6844903981521567752#heading-6)
+
+[4W字从0到部署上线，用 TS 带你彻底掌握前端工程化](https://mp.weixin.qq.com/s/heAeiXfJ8BHu-CO-kpTVLA)
 
 ## tsconfig.json
 
