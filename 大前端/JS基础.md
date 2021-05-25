@@ -123,7 +123,7 @@ for(let value of arr){
 
 ### 精度问题
 
-[JavaScript 浮点数运算的精度问题-WEB前端开发](https://www.notion.so/JavaScript-WEB-d229e1b8d0f94cb8bd4b5e9b79fa53cb)
+[JavaScript 浮点数运算的精度问题](https://www.notion.so/JavaScript-WEB-d229e1b8d0f94cb8bd4b5e9b79fa53cb)
 
 ## 原型链
 

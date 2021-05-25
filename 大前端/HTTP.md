@@ -2,6 +2,8 @@
 
 [「查缺补漏」巩固你的HTTP知识体系](https://juejin.cn/post/6857287743966281736)
 
+[送给前端 er 一份 HTTP 基础知识大图](https://mp.weixin.qq.com/s/3kR3Ptb2uiQ1sKlnnTr6mQ)
+
 ## 浏览器缓存
 
 浏览器根据一下两个返回的头信息判断请求操作
