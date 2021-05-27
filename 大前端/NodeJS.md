@@ -4,34 +4,67 @@
 
 自己总结的 node 全栈开发思维导图 http://qiniu.houserqu.com/6ad6d70406b524f8caefae2feaa7828cee48d7e9d4b07b6f49ba0ee7b0510c15.png
 
+### 模块化
+
+#### 模块加载顺序
+
+##### 阶段1. 粗查阶段
+
+- 如果是node核心模块，就直接返回模块名称
+- 如果是引入的第三方npm模块，会返回父级所在文件夹下的node_modules，父父级所在文件夹下的node_modules，依次递归，一直到/node_modules和用户名下的.node_modules以及全局环境变量配置的全局安装的模块文件夹组成的数组
+- 如果是相对路径引入的模块，会将相对路径和父级路径之间进行一个path.resolve()，然后返回
+
+##### 阶段2. 精确查找，获取文件绝对路径
+
+以require('express')为例
+
+- 先尝试加载node_modules/express，这种没有扩展名的文件是否存在
+- 尝试按照扩展名规则查找，依次判断node_modules文件夹下.js .json .node结尾的文件名为express的文件是否存在，返回文件的绝对路径
+- 判断node_modules/express文件夹下的package.json是否存在，如果存在，返回main字段指定的文件的绝对路径
+- 判断node_modules/express/index.js是否存在，存在返回对应文件绝对路径
+
+### path
+
+```js
+__dirname          // 返回当前模块所在目录的绝对路径 (类似 path.dirname())
+__filename         // 返回前模块的绝对路径
+path.basename('/目录1/目录2/文件.html');  // 返回: '文件.html' 【返回最后一部分】
+path.extname('index.coffee.md');        // 返回: '.md' 【拓展名】
+path.join('目录1', '目录2', '目录3/目录4') // 返回: '目录1/目录2/目录3/目录4' 【将路径片段生成规范的路径】
+path.basename('/目录1/目录2/文件.html');  // 返回: '文件.html' 【返回路径最后一部分】
+path.resolve('/目录1/目录2', './目录3');  // 返回: '/目录1/目录2/目录3' 【返回绝对路径】处理流程类似依次 cd， pwd
+
+// path 对象组成，如果存在 dir，则忽略 root，如果存在 base，则忽略 name 和 ext
+┌─────────────────────┬────────────┐
+│          dir        │    base    │
+├──────┬              ├──────┬─────┤
+│ root │              │ name │ ext │
+"  /    目录1/目录2    / 文件   .txt "
+└──────┴──────────────┴──────┴─────┘
+```
+
+
+
 ## 性能分析
 
 [对node工程进行压力测试与性能分析](https://juejin.cn/post/6844903665166188551)
 
 通过 V8 Profiler 可以分析调用栈的耗时，找到耗时的操作
 
-## 工具库
-
-[TypeOrm](Node%20js%20ca596fd24ea04188946c20e6b2ccf656/TypeOrm%207f4a1108bccc45a782b034bf288083f5.md)
-
-[Sequelize](Node%20js%20ca596fd24ea04188946c20e6b2ccf656/Sequelize%207fbf4dcb00324f92b748079121ef78ae.md)
-
 ## 技术
 
+### 命令行工具开发
+
 [命令行工具开发](Node%20js%20ca596fd24ea04188946c20e6b2ccf656/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%203b33f9b2bde84470aba11d2383174b2c.md)
+
+- shelljs 方便调用系统 shell  命令
+- yargs 方便处理命令行参数
 
 ## NPM
 
 **peerDependencies**
 
 目的是提示宿主环境去安装满足插件peerDependencies所指定依赖的包，然后在插件import或者require所依赖的包的时候，永远都是引用宿主环境统一安装的npm包，最终解决插件与所依赖包不一致的问题
-
-## 命令行工具开发
-
-### 库
-
-- shelljs 方便调用系统 shell  命令
-- yargs 方便处理命令行参数
 
 ## 模块化
 
