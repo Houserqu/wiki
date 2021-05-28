@@ -2,7 +2,39 @@
 
 ## 基础
 
-自己总结的 node 全栈开发思维导图 http://qiniu.houserqu.com/6ad6d70406b524f8caefae2feaa7828cee48d7e9d4b07b6f49ba0ee7b0510c15.png
+[Node.js API 文档](http://nodejs.cn/api/)
+
+### 大纲
+
+| 英文名称                                                     | 功能                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [assert（断言）](http://nodejs.cn/api/assert.html#assert_assert) | 断言函数，用于判断表达式结果是否符合预期                     |
+| [async_hooks（异步钩子)](http://nodejs.cn/api/async_hooks.html#async_hooks_async_hooks) | 提供了一个用于注册回调函数的 API，这些回调函数可追踪在 Node.js 应用中创建的异步资源的生命周期。实现对异步流程的追踪 |
+| [Buffer（缓冲器）](http://nodejs.cn/api/buffer.html#buffer_buffer) | `Buffer` 对象用于表示固定长度的字节序列                      |
+| [child_process（子进程）](http://nodejs.cn/api/child_process.html#child_process_child_process) | 提供了衍生子进程，父子进程通过消息进行通讯                   |
+| [cluster（集群）](http://nodejs.cn/api/cluster.html#cluster_cluster) | 可以用来创建共享服务器端口的子进程，共享任何 TCP 连接        |
+| [console（控制台）](http://nodejs.cn/api/console.html#console_console) | 调试控制台，可以打印调试内容                                 |
+| [crypto（加密）](http://nodejs.cn/api/crypto.html#crypto_crypto) | 提供了加密功能，包括对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装 |
+| [debugger（调试器）](http://nodejs.cn/api/debugger.html#debugger_debugger) | 进程外的调试实用程序，可通过 [V8 检查器](http://nodejs.cn/api/debugger.html#debugger_v8_inspector_integration_for_node_js)或内置的调试客户端访问 |
+| [dgram（数据报）](http://nodejs.cn/api/dgram.html#dgram_udp_datagram_sockets) | 提供了 UDP 数据报 socket 的实现                              |
+| [dns（域名服务器）](http://nodejs.cn/api/dns.html#dns_dns)   | 用于进行域名解析                                             |
+| [Error（错误）](http://nodejs.cn/api/errors.html#errors_errors) | 错误对象，会捕获堆栈跟踪，所有错误都实例化自或继承自 `Error` 类 |
+| [events（事件触发器）](http://nodejs.cn/api/events.html#events_events) | 提供`EventEmitter`类，是事件触发与事件监听器功能的封装       |
+| [fs（文件系统）](http://nodejs.cn/api/fs.html#fs_file_system) | 提供与文件系统进行交互的能力                                 |
+| [global（全局变量）](http://nodejs.cn/api/globals.html#globals_global_objects) | NodeJs 提供的全局变量，无需引用即可在模块中使用              |
+| [http](http://nodejs.cn/api/http.html#http_http)/[http2](http://nodejs.cn/api/http2.html#http2_http_2)/[https](http://nodejs.cn/api/https.html#https_https) | 创建 HTTP 的服务端和客户端                                   |
+| [inspector（检查器）](http://nodejs.cn/api/inspector.html#inspector_inspector) | 提供了与 V8 调试器交互的 API                                 |
+| [module（模块）](http://nodejs.cn/api/module.html#module_modules_module_api) | 与模块交互时可用的工具方法                                   |
+| [net（网络）](http://nodejs.cn/api/net.html#net_net)         | 用于创建基于流的 TCP 或 [IPC](http://nodejs.cn/api/net.html#net_ipc_support) 的服务器与客户端。http/http2/https 都是继承于该模块 |
+| [os（操作系统）](http://nodejs.cn/api/os.html#os_os)         | 提供了与操作系统相关的实用方法和属性                         |
+| [path（路径）](http://nodejs.cn/api/path.html#path_path)     | 提供了文件和目录的路径处理工具方法                           |
+| [perf_hooks（性能钩子）](http://nodejs.cn/api/perf_hooks.html#perf_hooks_performance_measurement_apis) | 提供了性能时间相关的 API，可以保存和获取性能相关的高精度的度量数据 |
+| [process（进程）](http://nodejs.cn/api/process.html#process_process) | `process` 对象是一个全局变量，提供了有关当前 Node.js 进程的信息并对其进行控制 |
+| [querystring（查询字符串）](http://nodejs.cn/api/querystring.html#querystring_query_string) | 用于解析和格式化 URL 查询字符串                              |
+| [readline（逐行读取）](http://nodejs.cn/api/readline.html#readline_readline) | 提供了一次一行地读取[可读流](http://nodejs.cn/api/stream.html#stream_readable_streams)中数据的接口 |
+| [repl（交互式解释器）](http://nodejs.cn/api/repl.html#repl_repl) | 提供了一种“读取-求值-输出”循环（REPL）的实现，直接运行 node 命令也可以进入该模式 |
+
+
 
 ### 模块化
 
@@ -42,6 +74,8 @@ path.resolve('/目录1/目录2', './目录3');  // 返回: '/目录1/目录2/目
 "  /    目录1/目录2    / 文件   .txt "
 └──────┴──────────────┴──────┴─────┘
 ```
+
+### crypto
 
 
 
