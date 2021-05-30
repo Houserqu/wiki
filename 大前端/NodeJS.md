@@ -33,6 +33,10 @@
 | [querystring（查询字符串）](http://nodejs.cn/api/querystring.html#querystring_query_string) | 用于解析和格式化 URL 查询字符串                              |
 | [readline（逐行读取）](http://nodejs.cn/api/readline.html#readline_readline) | 提供了一次一行地读取[可读流](http://nodejs.cn/api/stream.html#stream_readable_streams)中数据的接口 |
 | [repl（交互式解释器）](http://nodejs.cn/api/repl.html#repl_repl) | 提供了一种“读取-求值-输出”循环（REPL）的实现，直接运行 node 命令也可以进入该模式 |
+| [stream（流）](http://nodejs.cn/api/stream.html#stream_stream) | 处理流式数据的抽象接口                                       |
+| [string_decoder（字符串解码器）](http://nodejs.cn/api/string_decoder.html#string_decoder_string_decoder) | 将 `Buffer` 对象解码为字符串                                 |
+| [timer（定时器）](http://nodejs.cn/api/timers.html#timers_timers) |                                                              |
+|                                                              |                                                              |
 
 
 
