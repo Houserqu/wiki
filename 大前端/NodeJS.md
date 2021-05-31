@@ -4,7 +4,7 @@
 
 [Node.js API 文档](http://nodejs.cn/api/)
 
-### 大纲
+### 主要模块
 
 | 英文名称                                                     | 功能                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -35,10 +35,17 @@
 | [repl（交互式解释器）](http://nodejs.cn/api/repl.html#repl_repl) | 提供了一种“读取-求值-输出”循环（REPL）的实现，直接运行 node 命令也可以进入该模式 |
 | [stream（流）](http://nodejs.cn/api/stream.html#stream_stream) | 处理流式数据的抽象接口                                       |
 | [string_decoder（字符串解码器）](http://nodejs.cn/api/string_decoder.html#string_decoder_string_decoder) | 将 `Buffer` 对象解码为字符串                                 |
-| [timer（定时器）](http://nodejs.cn/api/timers.html#timers_timers) |                                                              |
-|                                                              |                                                              |
+| [timer（定时器）](http://nodejs.cn/api/timers.html#timers_timers) | setTimeOut(), setInterval(), setImmediate()                  |
+| [tls（安全传输层）](http://nodejs.cn/api/tls.html#tls_tls_ssl) | 安全传输层（TLS）及安全套接层（SSL）协议的实现，建立在OpenSSL的基础上。 |
+| [trace_events（跟踪事件）](http://nodejs.cn/api/tracing.html#tracing_trace_events) | 追踪 V8、NodeJS 内核和用户代码的信息                         |
+| [url（URL）](http://nodejs.cn/api/url.html#url_url)          | 处理与解析 URL                                               |
+| [util（实用工具）](http://nodejs.cn/api/util.html#util_util) | Node.js 内部 API 的会用到的工具方法，开发者也可以使用。      |
+| [v8（V8引擎）](http://nodejs.cn/api/v8.html#v8_v8)           | 暴露了特定于内置到 Node.js 二进制文件中的 [V8](http://url.nodejs.cn/Nt1LnB) 版本的 API |
+| [vm（虚拟机）](http://nodejs.cn/api/vm.html#vm_vm_executing_javascript) | 可以在不同的 V8 上下文中编译和运行代码                       |
 
+### 事件模型
 
+> 待完善
 
 ### 模块化
 
@@ -80,6 +87,32 @@ path.resolve('/目录1/目录2', './目录3');  // 返回: '/目录1/目录2/目
 ```
 
 ### crypto
+
+> 待完善
+
+### url
+
+上方的是传统的 `url.parse()` 返回的对象的属性。 下方的则是 [WHATWG](https://url.spec.whatwg.org/) 的 `URL` 对象的属性
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                              href                                              │
+├──────────┬──┬─────────────────────┬────────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │          host          │           path            │ hash  │
+│          │  │                     ├─────────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │    hostname     │ port │ pathname │     search     │       │
+│          │  │                     │                 │      │          ├─┬──────────────┤       │
+│          │  │                     │                 │      │          │ │    query     │       │
+"  https:   //    user   :   pass   @ sub.example.com : 8080   /p/a/t/h  ?  query=string   #hash "
+│          │  │          │          │    hostname     │ port │          │                │       │
+│          │  │          │          ├─────────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │          host          │          │                │       │
+├──────────┴──┼──────────┴──────────┼────────────────────────┤          │                │       │
+│   origin    │                     │         origin         │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴────────────────────────┴──────────┴────────────────┴───────┤
+│                                              href                                              │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 
 
