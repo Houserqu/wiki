@@ -9,12 +9,12 @@
 | 英文名称                                                     | 功能                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [assert（断言）](http://nodejs.cn/api/assert.html#assert_assert) | 断言函数，用于判断表达式结果是否符合预期                     |
-| [async_hooks（异步钩子)](http://nodejs.cn/api/async_hooks.html#async_hooks_async_hooks) | 提供了一个用于注册回调函数的 API，这些回调函数可追踪在 Node.js 应用中创建的异步资源的生命周期。实现对异步流程的追踪 |
+| [async_hooks（异步钩子)](http://nodejs.cn/api/async_hooks.html#async_hooks_async_hooks) | 提供了一个用于注册回调函数的 API，实现对异步流程的追踪       |
 | [Buffer（缓冲器）](http://nodejs.cn/api/buffer.html#buffer_buffer) | `Buffer` 对象用于表示固定长度的字节序列                      |
 | [child_process（子进程）](http://nodejs.cn/api/child_process.html#child_process_child_process) | 提供了衍生子进程，父子进程通过消息进行通讯                   |
-| [cluster（集群）](http://nodejs.cn/api/cluster.html#cluster_cluster) | 可以用来创建共享服务器端口的子进程，共享任何 TCP 连接        |
+| [cluster（集群）](http://nodejs.cn/api/cluster.html#cluster_cluster) | 可以用来创建共享服务器端口的子进程，能够共享任何 TCP 连接    |
 | [console（控制台）](http://nodejs.cn/api/console.html#console_console) | 调试控制台，可以打印调试内容                                 |
-| [crypto（加密）](http://nodejs.cn/api/crypto.html#crypto_crypto) | 提供了加密功能，包括对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装 |
+| [crypto（加密）](http://nodejs.cn/api/crypto.html#crypto_crypto) | 提供了加密功能，对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的封装 |
 | [debugger（调试器）](http://nodejs.cn/api/debugger.html#debugger_debugger) | 进程外的调试实用程序，可通过 [V8 检查器](http://nodejs.cn/api/debugger.html#debugger_v8_inspector_integration_for_node_js)或内置的调试客户端访问 |
 | [dgram（数据报）](http://nodejs.cn/api/dgram.html#dgram_udp_datagram_sockets) | 提供了 UDP 数据报 socket 的实现                              |
 | [dns（域名服务器）](http://nodejs.cn/api/dns.html#dns_dns)   | 用于进行域名解析                                             |
@@ -36,12 +36,15 @@
 | [stream（流）](http://nodejs.cn/api/stream.html#stream_stream) | 处理流式数据的抽象接口                                       |
 | [string_decoder（字符串解码器）](http://nodejs.cn/api/string_decoder.html#string_decoder_string_decoder) | 将 `Buffer` 对象解码为字符串                                 |
 | [timer（定时器）](http://nodejs.cn/api/timers.html#timers_timers) | setTimeOut(), setInterval(), setImmediate()                  |
-| [tls（安全传输层）](http://nodejs.cn/api/tls.html#tls_tls_ssl) | 安全传输层（TLS）及安全套接层（SSL）协议的实现，建立在OpenSSL的基础上。 |
+| [tls（安全传输层）](http://nodejs.cn/api/tls.html#tls_tls_ssl) | 安全传输层（TLS）及安全套接层（SSL）协议的实现，建立在OpenSSL的基础上 |
 | [trace_events（跟踪事件）](http://nodejs.cn/api/tracing.html#tracing_trace_events) | 追踪 V8、NodeJS 内核和用户代码的信息                         |
 | [url（URL）](http://nodejs.cn/api/url.html#url_url)          | 处理与解析 URL                                               |
-| [util（实用工具）](http://nodejs.cn/api/util.html#util_util) | Node.js 内部 API 的会用到的工具方法，开发者也可以使用。      |
+| [util（实用工具）](http://nodejs.cn/api/util.html#util_util) | Node.js 内部 API 的会用到的工具方法，开发者也可以使用        |
 | [v8（V8引擎）](http://nodejs.cn/api/v8.html#v8_v8)           | 暴露了特定于内置到 Node.js 二进制文件中的 [V8](http://url.nodejs.cn/Nt1LnB) 版本的 API |
 | [vm（虚拟机）](http://nodejs.cn/api/vm.html#vm_vm_executing_javascript) | 可以在不同的 V8 上下文中编译和运行代码                       |
+| [wasi（WASI）](http://nodejs.cn/api/wasi.html#wasi_webassembly_system_interface_wasi) | 提供了字节码形式的编译目标，允许浏览器可以执行由 C、Go 等语言编写的代码 |
+| [worker_threads（工作线程）](http://nodejs.cn/api/worker_threads.html#worker_threads_worker_threads) | 工作线程（子线程），可以与主线程共享内存。（与浏览器中的 Web Work 有差异） |
+| [zlib（压缩）](http://nodejs.cn/api/zlib.html#zlib_zlib)     | 模块提供通过 Gzip、Deflate/Inflate、和 Brotli 实现的压缩功能 |
 
 ### 事件模型
 
