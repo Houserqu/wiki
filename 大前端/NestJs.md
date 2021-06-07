@@ -45,5 +45,18 @@ user.guard.ts      // 守卫
 ### 请求ID
 
 请求ID可以将一个请求周期内所有打印的日志都带上相同的 ID，便于问题定位
-
 https://blog.goncharov.page/nodejs-logging-made-right
+
+## 常用代码
+
+返回静态文件，例如 html
+
+```typescript
+  @Get('report')
+  async report(@Res() res: Response) {
+    res.sendFile('report.html', {
+      root: path.resolve(__dirname, '..', '..', '..', 'static')
+    })
+  }
+```
+
