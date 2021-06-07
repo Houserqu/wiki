@@ -39,3 +39,11 @@ user.dto.ts        // 参数对象
 user.decorator.ts  // 装饰器
 user.guard.ts      // 守卫
 ```
+
+## 日志
+
+### 请求ID
+
+请求ID可以将一个请求周期内所有打印的日志都带上相同的 ID，便于问题定位
+
+https://blog.goncharov.page/nodejs-logging-made-right
