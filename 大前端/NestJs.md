@@ -39,3 +39,17 @@ user.dto.ts        // 参数对象
 user.decorator.ts  // 装饰器
 user.guard.ts      // 守卫
 ```
+
+## 常用代码
+
+返回静态文件，例如 html
+
+```typescript
+  @Get('report')
+  async report(@Res() res: Response) {
+    res.sendFile('report.html', {
+      root: path.resolve(__dirname, '..', '..', '..', 'static')
+    })
+  }
+```
+
