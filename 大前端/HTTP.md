@@ -116,3 +116,12 @@ HTTP协议通常承载于TCP协议之上，在HTTP和TCP之间添加一个安全
 [图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
 
 ![img](https://user-images.githubusercontent.com/34484322/89356430-58e32e00-d6f0-11ea-9320-115133c36e3e.png)
+
+## HTTP2
+
+### 多路复用
+
+### 头部压缩
+
+### 服务端推送
+

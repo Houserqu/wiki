@@ -45,3 +45,19 @@ type Furniture = typeof furniture[number];
 ```
 
 [模块](TypeScript%2065e0f4daf8bb42fb96187cbc2a8c1ee9/%E6%A8%A1%E5%9D%97%207515fdcf4f0e4399b8a69f3e83bd8bda.md)
+
+## 工具类型
+
+```typescript
+Partial<T>   // 将构造类型T的所有属性设置为可选
+Require<T>   // 将类型T所有属性设为require
+Record<K, T> // 构造一个对象类型，其属性名为K，属性值为T
+Pick<T, K>   // 从类型T中挑选部分属性K来构造新的类型 Pick<Todo, 'title' | 'completed'>
+Exclude<T, U>// 从类型T中，剔除所有能赋值给U的属性 Exclude< 'a' | 'b' | 'c', 'b'| 'c'> => 'a'
+Extract<T, U>// 从类型T中提取所有可以赋值给U的类型 Extract< 'a' | 'b' | 'c', 'b'| 'c'> => 'b' | 'c'
+Omit<T, K>   // 从类型T中剔除所有能赋值给K的属性 Omit<Todo, 'title'>
+NonNullable  // 从T中剔除null和undefined
+ReturnType<T>// 由函数类型T的返回值类型构造一个类型 ReturnType<()=> string> => string
+Readonly<T>  // 将T中所有属性设为只读
+```
+

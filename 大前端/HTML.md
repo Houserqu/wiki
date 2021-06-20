@@ -1,3 +1,5 @@
+# HTML
+
 ## 标签
 
 ### 标签的公有属性
@@ -51,3 +53,12 @@ user-scalable：用户是否可以手动缩放。
 2. 动态创建DOM方式（创建script，插入到DOM中，加载完毕后callBack）
 3. 按需[异步载入js](http://www.cnblogs.com/zichi/p/4597766.html)
 
+## iconfont
+
+1. 利用自定义字体实现：font-family，缺点：只支持单色
+
+2. 矢量图形：SVG，支持多色
+
+[解密 Iconfont](https://juejin.cn/post/6844903471049605127)
+
+[iconfont 字体生成原理及使用技巧](https://www.iconfont.cn/help/article_detail?article_id=1)
