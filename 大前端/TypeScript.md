@@ -61,3 +61,12 @@ ReturnType<T>// 由函数类型T的返回值类型构造一个类型 ReturnType<
 Readonly<T>  // 将T中所有属性设为只读
 ```
 
+## 热更新
+
+> https://hackernoon.com/how-to-restart-the-typescript-nodejs-application-fast-v11d3t3f
+
+主要有3个方案：
+
+- tsc -w + node
+- nodemon + ts-node
+- [ts-node-dev](https://github.com/wclr/ts-node-dev) (推荐：速度最快，因为修改代码后不需要重新全部编译)

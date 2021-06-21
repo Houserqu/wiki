@@ -31,8 +31,6 @@
 省略号...：任意多个参数。
 ```
 
-
-
 ### 基本使用
 
 ```bash
@@ -48,7 +46,7 @@ alias ll='ls -latr'# 创建了一个新的命令别名 ll
 
 ### cp
 
-`文件操作
+文件操作
 
 ```bash
 cp file newfile     # 复制文件
@@ -226,11 +224,13 @@ which nginx    # 查找第一个 nginx 命令的文件位置
 which -a nginx # -a 查找所有的
 ```
 
-### 其他
+### wc
+
+统计文件的字节数、字数、行数
 
 ```bash
-# 统计目录下所有文件行数
-find . -type f | xargs cat | wc -l
+ find src | xargs wc -l       # 统计 src 目录下所有文件行数
+ git ls-files | xargs wc -l   # 统计 git 仓库中所有文件行数
 ```
 
 ## 基本概念
