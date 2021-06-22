@@ -55,15 +55,27 @@ cp –r test/ newtest # 复制目录
 
 ### 进程相关
 
-[更多参考](https://www.runoob.com/w3cnote/linux-check-port-usage.html)
+进程查看
 
 ```bash
 lsof -i          # 查看所有网络连接信息
-lsof -i 8080     # 查看占用 8080 端口进程
-kill {pid}       # 杀死进程 
+lsof -i:8080     # 查看占用 8080 端口进程
 netstat -ntlp    # 查看所有tcp端口占用
 lsof -i tcp:8080 # mac 查看端口占用
-netstat -tunlp | grep [端口号]
+netstat -nplt | grep [端口号] # 根据端口产看进程
+ps -ef           # 显示所有进程信息，连同命令行
+
+kill {pid}       # 杀死进程 
+```
+
+负载监控
+
+```bash
+# top
+top    # 查看所有进程负载情况。输入大写 P/M 分别按照 CPU/内存 占用进行排序 (mac 需要先输入 o 进入命令模式，再分别输入列 key)
+top -pid # 查看指定进程负载情况
+
+# pidstat
 ```
 
 ### grep
@@ -82,7 +94,7 @@ grep pattern1 files | grep pattern2 # 多个关键字-与
 grep –i "被查找的字符串" 文件名  # 查找时不区分大小写：
 grep -w pattern files # 单词匹配
 grep -C number pattern files # 匹配的上下文分别显示[number]行，
-grep -rn --exclude-dir="node_modules"  "xxx"  ./ # 在指定目录搜索并排除目录
+grep findrn --exclude-dir="node_modules"  "xxx"  ./ # 在指定目录搜索并排除目录
 ```
 
 ### scp
