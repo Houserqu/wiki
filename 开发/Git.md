@@ -6,7 +6,22 @@
 
 [git合并原理](https://zhuanlan.zhihu.com/p/149287658)
 
+全局配置文件：`~/.gitconfig`
+
 ## 操作
+
+### SSH 授权
+
+1. 根据邮箱生成公私钥 `ssh-keygen -t rsa -C "你账号邮箱地址"`
+
+2. `~/.ssh` 目录下，复制 `id_rsa.pub` 的公钥内容，保存到 Git 平台上（如 github，gitlab）
+
+3. 全局配置 Git 的该邮箱和用户名
+
+   ```
+   git config --global user.name "xxx"
+   git config --global user.email "xxx@xx.com"
+   ```
 
 ### 添加远程仓库地址
 
@@ -40,6 +55,17 @@ git pull <远程主机名> <远程分支名>:<本地分支名>
 git pull --rebase <远程主机名> <远程分支名>:<本地分支名>
 ```
 
+### branch
+
+```bash
+git branch <branch-name>  # 新建本地分支，但不切换
+git branch # 查看本地分支
+git branch -r # 查看远程分支
+git branch -a # 查看本地和远程分支
+git branch -D <branch-nane> # 删除本地分支
+git branch -m <old-branch-name> <new-branch-name> # 重新命名分支
+```
+
 ### rebase / merge
 
 都是进行合并操作，rebase 会变基，适合仅个人开发的分支，能够让提交更清晰，merge 适合多人开发的分支。
@@ -50,7 +76,14 @@ git rebase -i ac18084 # 将 ac18084 之后的提交压缩成一个 commit
 
 ### cherry-pick
 
-获取某个分支的单个 commit 合并到当前分支
+获取某个分支的若干 commit 合并到当前分支
+
+```bash
+git cherry-pick <first-commit-id>...[<last-commit-id>] # 一个或范围 commit
+# 出现冲突，解决完之后
+git add
+git cherry-pick --continue
+```
 
 ### log
 
@@ -59,6 +92,7 @@ git log                    # 显示提交的用户、日期、comment
 git log --stat             # 显示提交修改的文件和代码量
 git log --oneline          # 一行显示提交信息
 git log --graph --oneline  # 分支图的形式显示并一行显示提交信息
+git log -p filenam         # 查看文件提交历史
 ```
 
 ### reflog
@@ -69,7 +103,27 @@ git log --graph --oneline  # 分支图的形式显示并一行显示提交信息
 git reflog
 ```
 
-### Tag
+### alias
+
+配置操作别名（zsh 默认会提供系统级别的 alias），推荐用 g 代替 git  `alias g=git`。
+
+```bash
+git config --global alias.<简化的字符> 原始命令
+# 示例
+git config --global alias.co checkout
+```
+
+通过文件配置 `~/.gitconfig`
+
+```
+[alias]
+st = status -sb
+mt = mergetool
+last = log -1 HEAD
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+### tag
 
 ```bash
 # 删除远程tag （先 pull 使本地有这个 tag，然后本地删除，push 到远程）
@@ -118,7 +172,7 @@ git stash list           # 查看所有 stash
 git stash clear          # 删除所有缓存的 stash
 ```
 
-恢复删除的stash：
+**恢复删除的stash**
 
 ```bash
 # 1.找出所有的 stash 提交记录
