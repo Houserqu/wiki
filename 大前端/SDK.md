@@ -29,3 +29,13 @@ User.update({name: 'newName'}, {
 
 [Babel原理](https://mp.weixin.qq.com/s/kI9nm5_hpTvGHHE61fzHNQ?forceh5=1)
 
+## PKG
+
+[vercel](https://github.com/vercel)/[pkg](https://github.com/vercel/pkg)
+
+将 nodejs 代码打包成一个可执行文件，包含 nodejs 运行环境，在目标机器上可以直接运行
+
+```bash
+pkg dist/server.js --targets node12-macos-x64
+```
+
