@@ -44,6 +44,41 @@ cd -               # 回到之前的路径
 alias ll='ls -latr'# 创建了一个新的命令别名 ll
 ```
 
+### 查看系统信息
+
+```bash
+# 系统相关
+uname -a               # 查看内核/操作系统/CPU信息
+head -n 1 /etc/issue   # 查看操作系统版本
+cat /proc/cpuinfo      # 查看CPU信息
+hostname               # 查看计算机名
+lspci -tv              # 列出所有PCI设备（yum install pciutils）
+lsusb -tv              # 列出所有USB设备
+lsmod                  # 列出加载的内核模块
+lspci | grep Ethernet  # 查看网卡型号
+
+# 资源
+free -m                # 查看内存使用量和交换区使用量
+df -h                  # 查看各分区使用情况
+du -sh <目录名>         # 查看指定目录的大小 df [-ahikHTm] [目录或文件名]
+grep MemTotal /proc/meminfo   # 查看内存总量
+grep MemFree /proc/meminfo    # 查看空闲内存量
+uptime                 # 查看系统运行时间、用户数、负载
+
+# 磁盘和分区
+mount | column -t      # 查看挂接的分区状态
+fdisk -l               # 查看所有分区
+swapon -s              # 查看所有交换分区
+hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)
+dmesg | grep IDE       # 查看启动时IDE设备检测状况
+
+# 网络
+ifconfig               # 查看所有网络接口的属性
+iptables -L            # 查看防火墙设置
+route -n               # 查看路由表
+netstat -s             # 查看网络统计信息
+```
+
 ### cp
 
 文件操作
@@ -157,15 +192,6 @@ ps -ef | less    # 分页查看进程
 find . -name test.txt 
 find . -name *.log
 find / -size +500M      # 查找大于 500M 的文件
-```
-
-### df
-
-查看磁盘占用情况
-
-```bash
-df [-ahikHTm] [目录或文件名]
-df -h # 以易读的方式展示磁盘情况
 ```
 
 ### du

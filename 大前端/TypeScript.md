@@ -36,6 +36,12 @@ const xx = require('xx')
 
 ## 一些语法
 
+### Type 与 Interface
+
+[Typescript 中的 interface 和 type 到底有什么区别](https://juejin.cn/post/6844903749501059085)
+
+最主要的区别是申明合并，两个同名的 interface 内的申明直接合并，如果用 type，通过 `&` 进行合并，而且可以定义成新的 type。
+
 ### 数组转元组类型
 
 ```tsx
@@ -67,6 +73,8 @@ Readonly<T>  // 将T中所有属性设为只读
 
 主要有3个方案：
 
+- [ts-node-dev](https://github.com/wclr/ts-node-dev) (推荐：速度最快，因为修改代码后不需要重新全部编译)
+
 - tsc -w + node
 - nodemon + ts-node
-- [ts-node-dev](https://github.com/wclr/ts-node-dev) (推荐：速度最快，因为修改代码后不需要重新全部编译)
+
