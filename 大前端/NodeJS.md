@@ -46,6 +46,10 @@
 | [worker_threads（工作线程）](http://nodejs.cn/api/worker_threads.html#worker_threads_worker_threads) | 工作线程（子线程），可以与主线程共享内存。（与浏览器中的 Web Work 有差异） |
 | [zlib（压缩）](http://nodejs.cn/api/zlib.html#zlib_zlib)     | 模块提供通过 Gzip、Deflate/Inflate、和 Brotli 实现的压缩功能 |
 
+### 进程与线程
+
+[深入理解Node.js 进程与线程](https://segmentfault.com/a/1190000020077274)
+
 ### 事件模型
 
 > 待完善
