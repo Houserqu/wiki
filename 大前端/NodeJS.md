@@ -2,9 +2,9 @@
 
 ## 基础
 
-[Node.js API 文档](http://nodejs.cn/api/)
-
 ### 主要模块
+
+[Node.js API 文档](http://nodejs.cn/api/)
 
 | 英文名称                                                     | 功能                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -46,17 +46,105 @@
 | [worker_threads（工作线程）](http://nodejs.cn/api/worker_threads.html#worker_threads_worker_threads) | 工作线程（子线程），可以与主线程共享内存。（与浏览器中的 Web Work 有差异） |
 | [zlib（压缩）](http://nodejs.cn/api/zlib.html#zlib_zlib)     | 模块提供通过 Gzip、Deflate/Inflate、和 Brotli 实现的压缩功能 |
 
+## 原理
+
+![img](http://qiniu.houserqu.com/4111821277-577a300546802_fix732.png)
+
+### 组成
+
+#### V8
+
+C++ 实现的 JS 代码执行引擎。V8 将你写的 JavaScript 代码编译为机器码然后执行。一个 Node 进程包含一个 V8 实例，该实例是多线程的
+
+- 主线程：编译、执行代码。
+
+- 编译/优化线程：在主线程执行的时候，可以优化代码。
+
+- 分析器线程：记录分析代码运行时间，为 Crankshaft 优化代码执行提供依据。
+
+- 垃圾回收的几个线程。
+
+#### libuv
+
+![img](http://qiniu.houserqu.com/FuX1qcGJgwYtX9zNbBAOSaQeD8Qz-20210707205352134.png)
+
+提供异步功能的 C 库。它在运行时负责一个事件循环（Event Loop）、一个线程池、文件系统 I/O、DNS 相关和网络 I/O，以及一些其他重要功能。
+
+对于Network I/O相关的请求， 根据OS平台不同，分别使用Linux上的epoll，OSX和BSD类OS上的kqueue，SunOS上的event ports以及Windows上的IOCP机制。
+
+而对于File I/O为代表的请求，则使用线程池的方式实现异步请求处理。
+
+#### C++ 库
+
+c-ares、crypto、http 等库，提供了对系统底层功能的访问，包括网络、压缩、加密等
+
+#### C/C++Binding
+
+将 Node.js 自带 C/C++ 写的核心库的接口暴露给 JS 环境，允许 JS 直接调用。
+
+#### C/C++ Addons
+
+Binding 仅桥接 Node.js 核心库的一些依赖，其他第三方或者你自己写的 C/C++ 库需要通过他来桥接。
+
 ### 进程与线程
 
 [深入理解Node.js 进程与线程](https://segmentfault.com/a/1190000020077274)
 
-### 事件模型
+- Node.js 虽然是单线程模型，但是其基于事件驱动、异步非阻塞模式，可以应用于高并发场景，避免了线程创建、线程之间上下文切换所产生的资源开销
 
-> 待完善
+### 事件循环
+
+[Node.js 事件循环，定时器和 `process.nextTick()`](https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/)
+
+![image-20210707221331922](http://qiniu.houserqu.com/image-20210707221331922.png)
+
+**执行流程**
+
+- 初始化 NodeJS 允许环境、libuv 线程池、V8 环境
+- 创建 NodeJS 运行实例，启动该实例
+- V8 引擎解析和执行 JS 代码
+- 如果存在异步调用，libuv 会分配线程去执行，执行完成之后将事件回调放到指定类型的事件队列中
+- 同步代码执行完毕，进入事件循环
+- 在每个事件循环中，按照 FIFO 的顺序用 V8 引擎执行每个阶段已经就绪的事件回调队列。
+- 进入下一个事件循环
+
+**时间循环中的各个阶段**
+
+```
+   ┌───────────────────────────┐
+┌─>│           timers          │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming:   │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │
+   └───────────────────────────┘
+```
+
+每个阶段都有一个要执行的事件回调 FIFO 队列，如果队列耗尽或达到最大执行回调数量，则进入下一个阶段。
+
+- timers：此阶段执行由 `setTimeout` 和 `setInterval` 设置的回调。
+- pending callbacks：某些由特殊的系统操作触发的callback(如某些TCP error)会在此阶段被执行. 例如, 尝试建立TCP连接时触发`ECONNREFUSED`错误, 则关联的callback会被调用。
+- idle, prepare, ：仅在内部使用。
+- poll：执行与 I/O 相关的事件回调。如果队列为空，node 将在此处阻塞等待一定时间（如果 immediates 队列有 callback 待执行，则会直接结束该阶段）。
+- check：在这里调用 `setImmediate` 回调（在I/O回调中，`setImmediate` 一定后于 `setTimeout` 执行）。
+- close callbacks：一些关闭回调，例如 socket.on('close', ...)。
+
+process.nextTick(): 独立于事件循环异步 API，该方法接受的回调函数会被添加到 `nextTickQueue`，当前同步代码执行完后立即执行该队列里的回调，无论当前处于事件循环的哪个阶段。（应用场景：需要等后面的同步代码执行完之后，立即执行的操作，例如释放资源，触发事件）
 
 ### 模块化
 
-#### 模块加载顺序
+#### 模块加载顺序	
 
 ##### 阶段1. 粗查阶段
 
