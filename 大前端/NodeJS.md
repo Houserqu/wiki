@@ -94,21 +94,25 @@ Binding 仅桥接 Node.js 核心库的一些依赖，其他第三方或者你自
 
 ### 事件循环
 
-[Node.js 事件循环，定时器和 `process.nextTick()`](https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/)
-
 ![image-20210707221331922](http://qiniu.houserqu.com/image-20210707221331922.png)
+
+> 浏览器也有事件循环，但是并不是由 V8（属于 ECMAScript 标准）提供，而是 Web Environment（属于 W3 C标准的内容）
 
 **执行流程**
 
-- 初始化 NodeJS 允许环境、libuv 线程池、V8 环境
+- 初始化 NodeJS 运行环境、libuv 线程池、V8 环境
 - 创建 NodeJS 运行实例，启动该实例
 - V8 引擎解析和执行 JS 代码
-- 如果存在异步调用，libuv 会分配线程去执行，执行完成之后将事件回调放到指定类型的事件队列中
+- 如果存在异步调用，提交到 libuv 中的事件队列中，libuv 会分配线程去执行，执行完成之后将事件放到指定类型的已就绪事件队列中
 - 同步代码执行完毕，进入事件循环
-- 在每个事件循环中，按照 FIFO 的顺序用 V8 引擎执行每个阶段已经就绪的事件回调队列。
+- 在每个事件循环中，事件循环线程按照 FIFO 的顺序从就绪事件队列中取出事件，并交给 V8 执行其回调函数
 - 进入下一个事件循环
 
 **时间循环中的各个阶段**
+
+> [Node.js 事件循环，定时器和 `process.nextTick()`](https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/)
+>
+> [不要混淆nodejs和浏览器中的event loop](https://cnodejs.org/topic/5a9108d78d6e16e56bb80882)
 
 ```
    ┌───────────────────────────┐
@@ -135,12 +139,32 @@ Binding 仅桥接 Node.js 核心库的一些依赖，其他第三方或者你自
 
 - timers：此阶段执行由 `setTimeout` 和 `setInterval` 设置的回调。
 - pending callbacks：某些由特殊的系统操作触发的callback(如某些TCP error)会在此阶段被执行. 例如, 尝试建立TCP连接时触发`ECONNREFUSED`错误, 则关联的callback会被调用。
-- idle, prepare, ：仅在内部使用。
+- idle, prepare：仅在内部使用。
 - poll：执行与 I/O 相关的事件回调。如果队列为空，node 将在此处阻塞等待一定时间（如果 immediates 队列有 callback 待执行，则会直接结束该阶段）。
 - check：在这里调用 `setImmediate` 回调（在I/O回调中，`setImmediate` 一定后于 `setTimeout` 执行）。
 - close callbacks：一些关闭回调，例如 socket.on('close', ...)。
 
 process.nextTick(): 独立于事件循环异步 API，该方法接受的回调函数会被添加到 `nextTickQueue`，当前同步代码执行完后立即执行该队列里的回调，无论当前处于事件循环的哪个阶段。（应用场景：需要等后面的同步代码执行完之后，立即执行的操作，例如释放资源，触发事件）
+
+事件轮询线程执行事件的回调函数，并且负责对处理类似网络 I/O 的非阻塞异步请求（如果回调中有异步请求）。
+
+**net 模块处理请求流程的函数调用**
+
+![img](http://qiniu.houserqu.com/56014909-b8624100-5d29-11e9-9542-66c04acae9f8.png)
+
+####  性能优化
+
+**优化原则：不要阻塞事件循环线程**
+
+https://nodejs.org/zh-cn/docs/guides/dont-block-the-event-loop/
+
+对一个复杂的任务，最好把它从事件循环线程转移到工作线程池上。
+
+每个相对长的任务会直接减少了工作线程池的可用线程数量，直到它的任务完成
+
+将任务拆分为子任务时，较短的任务将拆分为少量的子任务，而更长的任务将拆分为更多的子任务。 在较长任务的每个子任务之间，分配给它的工作线程可以调度执行另一个更短的任务拆分出来的子任务，从而提高工作池的总体任务吞吐量。
+
+Node.js 有两种类型的线程：一个事件循环线程和 `k` 个工作线程。 事件循环负责 JavaScript 回调和非阻塞 I/O，工作线程执行与 C++ 代码对应的、完成异步请求的任务，包括阻塞 I/O 和 CPU 密集型工作。这两种类型的线程一次都只能处理一个活动。所以尽可能保证这两种线程都不要被阻塞。
 
 ### 模块化
 

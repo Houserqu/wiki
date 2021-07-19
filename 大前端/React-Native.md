@@ -2,7 +2,7 @@
 
 [awesome-react-native](https://github.com/jondot/awesome-react-native): react-native 生态相关资源整理，
 
-
+[云音乐 React Native 体系建设与发展](https://juejin.cn/post/686772243636941620)
 
 ## 性能
 

@@ -13,7 +13,11 @@
 
 ## 资料
 
-[入门速成指南](https://learnku.com/go/t/24715)
+> 快速了解语法：[入门速成指南](https://learnku.com/go/t/24715)
+>
+> 推荐基础学习资料：[the-way-to-go_ZH_CN](https://github.com/unknwon/the-way-to-go_ZH_CN) 
+>
+> GO生态：[Go知识图谱](https://www.processon.com/view/link/5a9ba4c8e4b0a9d22eb3bdf0#map)
 
 ## 基础
 
