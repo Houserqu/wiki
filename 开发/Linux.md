@@ -100,7 +100,8 @@ lsof -i tcp:8080 # mac 查看端口占用
 netstat -nplt | grep [端口号] # 根据端口产看进程
 ps -ef           # 显示所有进程信息，连同命令行
 
-kill {pid}       # 杀死进程 
+kill {pid}       # 杀死进程
+ll /proc/{PID}   # 查看指定进程的详细信息：exe 执行程序的路径，cwd 运行目录，cmdline 执行命令，environ 运行时环境变量
 ```
 
 负载监控

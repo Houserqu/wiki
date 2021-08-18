@@ -10,7 +10,9 @@
 
 ## 操作
 
-### SSH 授权
+### 授权
+
+#### SSH
 
 1. 根据邮箱生成公私钥 `ssh-keygen -t rsa -C "你账号邮箱地址"`
 
@@ -22,6 +24,19 @@
    git config --global user.name "xxx"
    git config --global user.email "xxx@xx.com"
    ```
+
+#### Github token 认证
+
+> github 不再支持密码登录，需要用 token
+
+官网生成 token 之后，可以直接配置代码认证信息的 git 地址快速认证和避免每次输入账号密码
+
+```bash
+git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git
+
+示例：
+git remote set-url origin https://xxxxxxxxx@github.com/Houserqu/gin-starter.git
+```
 
 ### 添加远程仓库地址
 
