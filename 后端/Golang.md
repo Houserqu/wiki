@@ -32,25 +32,70 @@
  copy(b, a)
 ```
 
+```go
 删除位于索引 i 的元素：a = append(a[:i], a[i+1:]...)
-
 切除切片 a 中从索引 i 至 j 位置的元素：a = append(a[:i], a[j:]...)
-
 为切片 a 扩展 j 个元素长度：a = append(a, make([]T, j)...)
-
 在索引 i 的位置插入元素 x：a = append(a[:i], append([]T{x}, a[i:]...)...)
-
 在索引 i 的位置插入长度为 j 的新切片：a = append(a[:i], append(make([]T, j), a[i:]...)...)
-
 在索引 i 的位置插入切片 b 的所有元素：a = append(a[:i], append(b, a[i:]...)...)
-
 取出位于切片 a 最末尾的元素 x：x, a = a[len(a)-1:], a[:len(a)-1]
-
 将元素 x 追加到切片 a：a = append(a, x)
+```
 
 ### error 与 panic
 
 [Go 语言 panic 与 error 最佳实践](https://zhuanlan.zhihu.com/p/87345297)
+
+### 字符串
+
+#### strconv 包
+
+实现了字符串与数字（整数、浮点数等）之间的互相转换.
+
+```go
+// 接受1，t，T，TRUE，true，True，0，f，F，FALSE，false，False。 其他任何值都将返回错误
+strconv.ParseBool(str string) (value bool, err error) 
+// 字符串转数字
+int, err := strconv.Atoi(string)
+int64, err := strconv.ParseInt(string, 10, 64)
+// 数字转字符串
+string := strconv.Itoa(int)
+string := strconv.FormatInt(int64,10)
+```
+
+### 数字
+
+```go
+// 整数:
+int8（-128 -> 127）
+int16（-32768 -> 32767）
+int32（-2,147,483,648 -> 2,147,483,647）
+int64（-9,223,372,036,854,775,808 -> 9,223,372,036,854,775,807）
+
+// 无符号整数
+uint8（0 -> 255）
+uint16（0 -> 65,535）
+uint32（0 -> 4,294,967,295）
+uint64（0 -> 18,446,744,073,709,551,615）
+
+// 浮点型（IEEE-754 标准）
+float32（+- 1e-45 -> +- 3.4 * 1e38）
+float64（+- 5 1e-324 -> 107 1e308）
+```
+
+### 运算符
+
+```go
+优先级     运算符
+ 7      ^ !
+ 6      * / % << >> & &^
+ 5      + - | ^
+ 4      == != < <= >= >
+ 3      <-
+ 2      &&
+ 1      ||
+```
 
 ## 编译
 
@@ -72,3 +117,4 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
 ```
 
+### 
