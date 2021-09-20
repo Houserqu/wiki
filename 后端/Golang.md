@@ -101,7 +101,7 @@ float64（+- 5 1e-324 -> 107 1e308）
 
 Go 支持不同平台的交叉编译，直接生成可执行文件（不需要安装 go 环境就可以运行）。
 
-```
+```bash
 设置 GOOS 和 GOARCH 两个环境变量就能生成所需平台的Go程序
 
 GOOS：目标可执行程序运行操作系统，支持 darwin，freebsd，linux，windows（darwin代表苹果电脑的系统）
@@ -117,4 +117,13 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
 ```
 
-### 
+## 库收藏
+
+| 库                                      | 标准库 | 说明                                                         |
+| --------------------------------------- | ------ | ------------------------------------------------------------ |
+| [Viper](https://github.com/spf13/viper) |        | 功能全面的配置处理库，支持多种配置获取方式：文件、服务、环境变量 |
+| [cobra](https://github.com/spf13/cobra) |        | cli 开发工具库                                               |
+|                                         |        |                                                              |
+
+
+
