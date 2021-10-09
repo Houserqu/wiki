@@ -31,6 +31,15 @@ compose 的网络介绍比较详细
 docker build -t app:1.0 .
 ```
 
+###  容器操作
+
+```bash
+docker run -it -P trpc-txcz-demo:0.2.0 # 后台启动容器，并随机映射端口
+
+```
+
+
+
 ## docker-compose
 
 ### 网络

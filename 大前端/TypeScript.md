@@ -12,6 +12,8 @@
 
 [4W字从0到部署上线，用 TS 带你彻底掌握前端工程化](https://mp.weixin.qq.com/s/heAeiXfJ8BHu-CO-kpTVLA)
 
+[TypeScript条件类型](https://mp.weixin.qq.com/s/DFhuiPE7JZud8bgIvouHhg)
+
 ## tsconfig.json
 
 ts 项目配置文件
@@ -67,7 +69,9 @@ ReturnType<T>// 由函数类型T的返回值类型构造一个类型 ReturnType<
 Readonly<T>  // 将T中所有属性设为只读
 ```
 
-## 热更新
+## 热重载
+
+修改 ts 代码后，快速重启。
 
 > https://hackernoon.com/how-to-restart-the-typescript-nodejs-application-fast-v11d3t3f
 
