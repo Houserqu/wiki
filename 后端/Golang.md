@@ -117,13 +117,11 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
 ```
 
-## 库收藏
+## 公共库
 
 | 库                                      | 标准库 | 说明                                                         |
 | --------------------------------------- | ------ | ------------------------------------------------------------ |
 | [Viper](https://github.com/spf13/viper) |        | 功能全面的配置处理库，支持多种配置获取方式：文件、服务、环境变量 |
 | [cobra](https://github.com/spf13/cobra) |        | cli 开发工具库                                               |
 |                                         |        |                                                              |
-
-
 
