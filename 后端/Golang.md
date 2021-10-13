@@ -21,15 +21,34 @@
 
 ## 基础
 
-### 数组与切片
+### 25 个保留关键字
 
-将切片 b 的元素追加到切片 a 之后：a = append(a, b...)
+- `var` ,`const` ：变量和常量的声明
+- `package` ：声明包
+-  `import`：导入包
+- `func`： 用于定义函数和方法
+- `return` ：用于从函数返回
+- `defer`  ：在函数退出之前执行
+- `go` : 用于并行
+- `select`: 用于选择不同类型的通讯
+- `interface` ：用于定义接口
+- `struct` ：用于定义抽象数据类型
+- `break`、`case`、`continue`、`for`、`fallthrough`、`else`、`if`、`switch`、`goto`、`default` ：流程控制
+- `chan` ：用于channel通讯
+- `type`：用于声明自定义类型
+- `map`：用于声明map类型数据
+- `range` ：用于读取 slice、map、channel 数据
 
-复制切片 a 的元素到新的切片 b 上：
+### 基本数据类型
+
+#### 数组与切片
 
 ```go
- b = make([]T, len(a))
- copy(b, a)
+var numbers []int // 初始化没有容量的切片
+numbers := make([]int, 15) // 创建指定长度的切片
+
+numbers = append(numbers, 1, 2, 3, 4) // 在数组末尾增加元素，容量不足时增加容量
+copy(b, a) // 复制切片 a 的元素到新的切片 b 上：
 ```
 
 ```go
@@ -43,13 +62,9 @@
 将元素 x 追加到切片 a：a = append(a, x)
 ```
 
-### error 与 panic
+#### 字符串
 
-[Go 语言 panic 与 error 最佳实践](https://zhuanlan.zhihu.com/p/87345297)
-
-### 字符串
-
-#### strconv 包
+##### strconv 包
 
 实现了字符串与数字（整数、浮点数等）之间的互相转换.
 
@@ -64,10 +79,11 @@ string := strconv.Itoa(int)
 string := strconv.FormatInt(int64,10)
 ```
 
-### 数字
+#### 数字
 
 ```go
 // 整数:
+int / uint // 位数取决于 CPU 的位数
 int8（-128 -> 127）
 int16（-32768 -> 32767）
 int32（-2,147,483,648 -> 2,147,483,647）
@@ -83,6 +99,160 @@ uint64（0 -> 18,446,744,073,709,551,615）
 float32（+- 1e-45 -> +- 3.4 * 1e38）
 float64（+- 5 1e-324 -> 107 1e308）
 ```
+
+#### 结构体 struct
+
+```go
+// 声明
+type Person struct {
+  name string
+  age int
+  gender string
+}
+
+p := Person{name: "Bob", age: 42, gender: "Male"} // 1.指定属性和值的方式初始化
+p := Person{"Bob", 42, "Male"} // 2.指定值的方式初始化（需要跟声明的属性顺序一致）
+
+p.name // 访问属性
+pp = &person; pp.name // 也可以通过指针直接访问属性
+```
+
+##### 方法
+
+作用在结构体上的函数
+
+```go
+// 给 person 结构体定义 describe 方法
+func (p *Person) describe() {
+  fmt.Printf("%v is %v years old.", p.name, p.age)
+}
+
+// 调用
+pp := &person{name: "Bob", age: 42, gender: "Male"}
+pp.describe()
+```
+
+#### 接口 interface
+
+方法的集合
+
+```go
+// 声明接口
+type animal interface {
+  description() string
+}
+// 声明结构体
+type cat struct {
+  Type  string
+  Sound string
+}
+// 结构体实现接口方法
+func (c cat) description() string {
+  return fmt.Sprintf("Sound: %v", c.Sound)
+}
+// 初始化接口并指定结构体实例
+var a animal
+a = snake{Poisonous: true}
+```
+
+#### Map
+
+key-value 数据结构
+
+```go
+m := make(map[string]int) // 创建 key:string value:int
+m["clearity"] = 2 // 赋值
+m["clearity"] // 取值
+```
+
+#### 指针
+
+```go
+var ap *int // * 定义指针，ap 是指向整数类型的指针，值为地址
+a := 12; ap = &a // & 取地址，&a 的到变量 a 的地址，赋值给指针类型变量 ap
+fmt.Println(*ap) // * 访问指针变量的值
+```
+
+在将结构体作为参数传递或者为已定义类型声明方法时，通常首选指针。特点：
+
+1. 只需要传递指针，节省内存
+2. 能够修改原始数据（因为传递的不是变量副本）
+
+### 函数 
+
+#### 声明
+
+```go
+func add(a int, b int) int {...} // 单返回值
+func add(a int, b int) (int, error) {...} // 多返回值
+func add(a int, b int) (c int, err error) { // 声明的多返回值,
+  c = a + b // c 已经声明，直接使用
+  return    // 可以不用指明变量
+}
+
+func (c *person) add(a int, b int) int {...} // 方法的声明
+```
+
+#### defer
+
+总是在函数结束时执行，即使函数发生 panic。常用于进行后置操作如关闭打开的文件、释放数据库链接等。
+
+```go
+func f() {
+  defer fmt.Println("defer") // 后执行
+  fmt.Println("func")
+}
+
+// 在 defer 恢复 panic，可以避免程序 crash
+func f() {
+	defer func() {
+    if r := recover(); r != nil {
+      fmt.Println("Recovered in f", r)
+    }
+  }()
+  
+  panic("panic")
+}
+```
+
+### 协程 goroutine
+
+轻量级的线程，可以在一个线程里面跑多个协程，通过通道（chanel）来实现数据共享。是语言层面的现实。
+
+#### 通道
+
+```go
+func main(){
+  c := make(chan string)        // 声明通道
+  go func(){ c <- "hello" }()   // 写数据到通道
+  msg := <-c                    // 从通道取数据
+  fmt.Println(msg)
+}
+```
+
+##### 多通道处理
+
+```go
+// 类似于 switch，用来处理多个通道。并且可以阻塞程序退出。
+select {
+ 	case s1 := <-c1:
+  	fmt.Println(s1)
+ 	case s2 := <-c2:
+  	fmt.Println(s2)
+ }
+```
+
+##### 缓冲通道
+
+```go
+ch := make(chan string, 2) // 缓冲区容量为 2 的通道
+```
+
+
+
+### error 与 panic
+
+[Go 语言 panic 与 error 最佳实践](https://zhuanlan.zhihu.com/p/87345297)
 
 ### 运算符
 
@@ -118,6 +288,8 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
 ```
 
 ## 公共库
+
+[标准库文档](https://pkg.go.dev/std)，[标准库文档（中文）](https://studygolang.com/pkgdoc)
 
 | 库                                      | 标准库 | 说明                                                         |
 | --------------------------------------- | ------ | ------------------------------------------------------------ |
