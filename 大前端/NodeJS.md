@@ -2,6 +2,10 @@
 
 ## 基础
 
+### package.json
+
+[关于前端大管家 package.json，你知道多少？](https://juejin.cn/post/7023539063424548872)
+
 ### 主要模块
 
 [Node.js API 文档](http://nodejs.cn/api/)

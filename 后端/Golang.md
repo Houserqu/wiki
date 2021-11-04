@@ -25,7 +25,7 @@
 
 - `var` ,`const` ：变量和常量的声明
 - `package` ：声明包
--  `import`：导入包
+- `import`：导入包
 - `func`： 用于定义函数和方法
 - `return` ：用于从函数返回
 - `defer`  ：在函数退出之前执行
@@ -40,6 +40,8 @@
 - `range` ：用于读取 slice、map、channel 数据
 
 ### 基本数据类型
+
+能够通过`make()`创建的都是引用类型，有 slice、map、chan，返回的是指针
 
 #### 数组与切片
 
@@ -247,8 +249,6 @@ select {
 ```go
 ch := make(chan string, 2) // 缓冲区容量为 2 的通道
 ```
-
-
 
 ### error 与 panic
 
