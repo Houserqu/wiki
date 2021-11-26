@@ -17,7 +17,11 @@
 >
 > 推荐基础学习资料：[the-way-to-go_ZH_CN](https://github.com/unknwon/the-way-to-go_ZH_CN) 
 >
-> GO生态：[Go知识图谱](https://www.processon.com/view/link/5a9ba4c8e4b0a9d22eb3bdf0#map)
+> go 生态：[Go知识图谱](https://www.processon.com/view/link/5a9ba4c8e4b0a9d22eb3bdf0#map)
+>
+> go 常见代码：https://gobyexample.com/
+>
+> go 代码规范 [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
 
 ## 基础
 
