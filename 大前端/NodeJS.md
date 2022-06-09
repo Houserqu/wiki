@@ -1,5 +1,11 @@
 # Node.js
 
+## 资源
+
+[彻底搞懂 npm、yarn 与 pnpm 依赖管理逻辑](https://mp.weixin.qq.com/s/N2G--m4rGpgXb26X7WZF7Q)
+
+[node-gyp 实现 nodejs 调用 C++ - 掘金](https://juejin.cn/post/6844903971220357134)
+
 ## 基础
 
 ### package.json

@@ -8,6 +8,10 @@
 
 [详解Mysql索引原理及其优化](https://juejin.cn/post/6844903909899632654)
 
+## 配置
+
+### only_full_group_by 模式
+
 ## 数据库操作
 
 ### 数据库服务
@@ -45,49 +49,49 @@ use db_name;
 
 ## SHOW - 查看数据库相关信息
 
-### 查看数据库列表
+查看数据库列表
 
 ```sql
 show databases;
 ```
 
-### 查看指定数据库的表
+查看指定数据库的表
 
 ```sql
 show table from db_name;
 ```
 
-### 查看表的字段信息
+查看表的字段信息
 
 ```sql
 show columns from table_name;
 ```
 
-### 查看表创建 sql
+查看表创建 sql
 
 ```sql
 show create table table_name
 ```
 
-### 查看数据表索引
+查看数据表索引
 
 ```sql
 show index from talbe_name;
 ```
 
-### 查看状态信息
+查看状态信息
 
 ```sql
 show status;
 ```
 
-### 查看变量
+查看变量
 
 ```sql
 show variables;
 ```
 
-### 查看表状态信息
+查看表状态信息
 
 ```sql
 show table status
@@ -175,6 +179,20 @@ ALTER TABLE table_name DROP PRIMARY key ADD PRIMARY key('id', 'name'),
 
 ### 查询
 
+#### mysql 查询执行逻辑
+
+书写顺序
+select->distinct->from->join->on->where->group by->having->order by->limit
+
+执行顺序
+from->on->join->where->group by->sum、count、max、avg->having->select->distinct->order by->limit
+
+注意点:
+where 效率比 having 高，所以尽可能用 where 过滤条件
+执行过程中，关键步骤都会生成虚拟表，后续操作都是在当前虚拟表中操作，再生成新的虚拟表
+
+#### 关键字
+
 ```sql
 SELECT column_name,column_name 
 FROM table_name 
@@ -200,6 +218,10 @@ SELECT * FROM tableA a, tableB b WHERE a.columnA = b.columnB
 
 **OFFSET** 偏移量，从第n条记录之后开始查询
 
+### 大小写问题
+
+utf8_general_ci 字符集不区分大小写，uft8_bin 字符集区分大小写，可以单独设置某个字段的字符集
+
 ### 高级查询
 
 **聚合**
@@ -216,6 +238,31 @@ select sum(distinct age) from table_name;
 # GROUP BY 在聚合的基础上分类，如果末尾加上 WITH ROLLUP 会额外统计出总数
 SELECT name, SUM(price) as pricee_count FROM  order GROUP BY name WITH ROLLUP;
 ```
+
+**group by**
+
+用于集合数据
+
+```sql
+如果 select 出来的字段不在 group by 中，且有差异，只会取第一条，下面中的 id 是第一个用户的 id
+select id, age from users group by age;
+根据年龄聚合用户列表，同时将相同年龄的名字加在一起
+select age, GROUP_CONCAT(name) from users group by age;
+根据年龄聚合用户列表，同时计算出总年龄
+select age, sum(age) from users group by age;
+```
+
+如果需要对 group by 之后的结果进行条件筛选，则用 HAVING 子句来，用法跟 WHERE 一样
+
+only_full_group_by 模式
+
+含义：使用 group by 的时候，select 的字段必须再 group by 的字段列表中。
+错误：select name, age from users group by age
+正确：select name, age from users group by age, name
+
+mysql 默认开启，建议关闭该模式，因为导致 sql 会很不灵活：
+查看是否有开启 `select @@sql_mode;`
+去掉该模式重新设置值 `set @@sql_mode;`
 
 **去重**
 

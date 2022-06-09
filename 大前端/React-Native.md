@@ -1,16 +1,36 @@
-## 资源
-
-[awesome-react-native](https://github.com/jondot/awesome-react-native): react-native 生态相关资源整理，
+## 参考
 
 [云音乐 React Native 体系建设与发展](https://juejin.cn/post/686772243636941620)
 
-## 性能
-
-获取通讯录功能，react-native 比 API-Cloud 快非常多，不止 10 倍
+[React Native 新架构解析](https://segmentfault.com/a/1190000041182593)
 
 ## 库
 
-[nativebase](https://nativebase.io/)
+> 资源列表 https://github.com/jondot/awesome-react-native
+>
+> 查询库的使用情况 https://reactnative.directory/
+
+路由：https://reactnavigation.org/docs/getting-started/ 
+
+本地store管理：https://github.com/sunnylqm/react-native-storage 
+
+sqlite: https://github.com/realm/realm-js 
+
+设备信息：https://github.com/react-native-device-info/react-native-device-info 
+
+配置管理：https://github.com/luggit/react-native-config 
+
+请求权限：[GitHub - zoontek/react-native-permissions: An unified permissions API for React Native on iOS and An](https://github.com/zoontek/react-native-permissions)
+
+通讯录：https://github.com/morenoh149/react-native-contacts 
+
+二维码扫描：https://github.com/ideacreation/react-native-barcodescanner 
+
+UI:https://github.com/GeekyAnts/NativeBase 
+
+运行时状态管理：https://mobx-state-tree.js.org/intro/getting-started 
+
+开发工具：https://fbflipper.com/
 
 ### React-Native-Navigation
 
@@ -26,3 +46,19 @@
 - You can go back to an existing screen in the stack with `navigation.navigate('RouteName')`, and you can go back to the first screen in the stack with `navigation.popToTop()`.
 - The `navigation` prop is available to all screen components (components defined as screens in route configuration and rendered by React Navigation as a route).
 
+## 热更新
+
+国内热更新方案 https://pushy-admin.reactnative.cn/
+
+## 问题记录
+
+- yarn start 只启动了 metro，没有安装 android 相关依赖。
+
+解决：完整命令启动 `npx react-native run-android`
+
+- 在 genymotion 中打开调试面板 `adb shell input keyevent 82`
+
+- pod install速度慢解决方案 原因：访问 github 蛮，解决：让 github 走代理
+
+- react-native-orientation build 问题
+  https://github.com/yamill/react-native-orientation/issues/407

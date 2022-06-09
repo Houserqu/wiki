@@ -22,6 +22,8 @@
 > go 常见代码：https://gobyexample.com/
 >
 > go 代码规范 [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+>
+> 3种方式！Go Error处理最佳实践: https://mp.weixin.qq.com/s/ibGCUovoDHY2H9aa5jnDfA
 
 ## 基础
 

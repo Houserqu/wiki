@@ -55,3 +55,10 @@ this.$router.replace('/refresh')
 
 include 数组值是组件的 name 属性值，不是路由的 name 值
 
+## Vue3
+
+### vue3快速上手
+
+[让你30分钟快速掌握vue 3 - 掘金](https://juejin.cn/post/6887359442354962445#heading-27)
+
+[vue3--vuex简单使用及持久化处理 - 掘金](https://juejin.cn/post/7006890304217284638)

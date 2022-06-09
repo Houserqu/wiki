@@ -1,3 +1,5 @@
+
+
 # Docker
 
 ## 文档
@@ -16,9 +18,20 @@ compose 的网络介绍比较详细
 
 [https://michael728.github.io/2019/06/15/docker-compose-networks/](https://michael728.github.io/2019/06/15/docker-compose-networks/)
 
-## 笔记
+## 基础
+
+### 网络
 
 通过 docker network 创建自定义网络的时候，该网络下容器 expose 的端口跟默认的 bridge0 网络下的容器 expose 端口是在同一个宿主网络中，依然会冲突，访问容器的方式跟默认网桥也相同，只是内部容器的网络是隔离的
+
+### docker-自动重启
+
+![middle_img_v2_ab631234-0fdd-4144-b1da-6e16064c432g](http://qiniu.houserqu.com/middle_img_v2_ab631234-0fdd-4144-b1da-6e16064c432g-huqNDf.png)
+
+```
+一般建议使用 unless-stopped 策略
+示例：docker run -d --restart unless-stopped tomcat
+```
 
 ## 常用命令
 
@@ -34,11 +47,12 @@ docker build -t app:1.0 .
 ###  容器操作
 
 ```bash
-docker run -it -P trpc-txcz-demo:0.2.0 # 后台启动容器，并随机映射端口
+# 后台启动容器，并随机映射端口
+docker run -it -P trpc-txcz-demo:0.2.0
 
+# 后台启动容器，并挂载目录、映射端口、指定容器名称
+docker run -d -p 8010:80 -v /www/wwwroot/api2.dongfanlaoshi.com/app/:/app --name dongfan2-2-api go-runner:latest
 ```
-
-
 
 ## docker-compose
 
