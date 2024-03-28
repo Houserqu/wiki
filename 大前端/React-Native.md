@@ -62,3 +62,17 @@ UI:https://github.com/GeekyAnts/NativeBase
 
 - react-native-orientation build 问题
   https://github.com/yamill/react-native-orientation/issues/407
+  
+- gradle 下载失败
+  
+  参考说明去手动下载 https://github.com/reactnativecn/react-native-website/issues/373
+
+## 性能优化
+
+- [React Native 性能优化指南](https://juejin.cn/post/6844904041290432525#heading-35)
+
+- [没 2 年 React Native 开发经验，你都遇不到这些坑](https://juejin.cn/post/7012804162249293854)
+
+切换 gradle 版本
+
+https://lukerogerson.medium.com/how-to-upgrade-android-gradle-for-react-native-devs-eae77aed5423

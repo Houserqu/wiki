@@ -125,3 +125,6 @@ HTTP协议通常承载于TCP协议之上，在HTTP和TCP之间添加一个安全
 
 ### 服务端推送
 
+## HTTPS
+
+![img](https://pica.zhimg.com/80/v2-ef7388fece5dec717d580737482c3736_720w.jpg?source=1940ef5c)

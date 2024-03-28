@@ -241,3 +241,8 @@ Mobx基于观察者模式，采用多节点管理数据，
 
 参考：[Redux 和 Mobx 哪个更适合你？](https://juejin.im/entry/5a61c3166fb9a01c9e460976)
 
+
+
+如何定义 react hook type 类型
+
+https://devtrium.com/posts/react-typescript-how-to-type-hooks

@@ -31,3 +31,10 @@ Pm2 配置文件 process.json
   }]
 }
 ```
+
+启动 nextjs 项目
+
+```bash
+pm2 start npm --name web-nextjs -- run start
+```
+

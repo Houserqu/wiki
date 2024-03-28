@@ -280,6 +280,16 @@ heapdump 工具可以记录内存快照，然后通过 Chrome Memory 工具可�
 
 目的是提示宿主环境去安装满足插件peerDependencies所指定依赖的包，然后在插件import或者require所依赖的包的时候，永远都是引用宿主环境统一安装的npm包，最终解决插件与所依赖包不一致的问题
 
+**版本命名规范**
+
+major.minor.patch-{identifier}.{identifier}.{identifier}
+
+常用的版本号标签有latest（默认），alpha（内测）， beta （公测）， next（下一个）， rc（ 候选）， experimental（实验）
+
+`^` 保持主要版本，比如^1.2.3会匹配所有1.x.x的包，包括1.3.0，但是不包括2.0.0
+
+`~` 保持次要版本，比如~1.2.3会匹配所有1.2.x版本，但是不包括1.3.0
+
 ## 模块化
 
 ### 模块引入顺序

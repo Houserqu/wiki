@@ -457,3 +457,15 @@ server {
     # ...
 }
 ```
+
+### BrowserHistory 配置
+
+```nginx
+location / {
+  #root   html;
+  index  index.html;
+  # url 切换时始终返回index.html
+  try_files $uri /index.html;
+}
+```
+

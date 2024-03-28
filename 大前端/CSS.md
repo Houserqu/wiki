@@ -84,3 +84,22 @@ SVG可缩放矢量图形（ Scalable Vector Graphics ）是基于可扩展标记
 
 [「一劳永逸」48张小图带你领略flex布局之美](https://juejin.cn/post/6866914148387651592)
 
+## 夜间模式
+
+- css 滤镜反转 [参考](http://www.deathghost.cn/article/css/96)
+
+  ```css
+  .dark {
+    filter: invert(0.9) hue-rotate(.5turn);
+  }
+  .dark img {
+    filter: invert(1) hue-rotate(.5turn);
+  }
+  ```
+
+  ```js
+  document.getElementsByTagName('html')[0].classList.add('dark');
+  document.getElementsByTagName('html')[0].classList.remove('dark');
+  ```
+
+  

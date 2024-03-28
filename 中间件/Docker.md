@@ -92,3 +92,19 @@ docker attach {id} # exit 后容器会停止
 
 - expose 端口映射
 - localhost:端口直接访问（network 为 host 模式才支持）
+
+## 安全
+
+### 开发端口
+
+如果通过 iptable 控制端口开放，docker 有自己的路由表，需要在该路由表设置才能生效
+
+```bash
+# 产看 docker 端口设置
+iptables -L DOCKER
+
+# 设置端口对指定 ip 开放
+iptables -I DOCKER -p tcp --dport 5700 -j DROP                     // 先删除
+iptables -I DOCKER -s 221.214.36.98 -p tcp --dport 5700 -j ACCEPT  // 再开放
+```
+

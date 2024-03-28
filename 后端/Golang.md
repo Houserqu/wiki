@@ -87,6 +87,16 @@ string := strconv.Itoa(int)
 string := strconv.FormatInt(int64,10)
 ```
 
+**常用操作**
+
+```go
+// 字符串截取
+str := "Hello HaiCoder!"
+str1 := str[0:4] // Hell
+```
+
+
+
 #### 数字
 
 ```go
@@ -273,6 +283,12 @@ ch := make(chan string, 2) // 缓冲区容量为 2 的通道
  1      ||
 ```
 
+### 标准 API
+
+#### 时间 time
+
+> https://www.zhangbj.com/p/652.html
+
 ## 编译
 
 Go 支持不同平台的交叉编译，直接生成可执行文件（不需要安装 go 环境就可以运行）。
@@ -284,9 +300,9 @@ GOOS：目标可执行程序运行操作系统，支持 darwin，freebsd，linux
 GOARCH：目标可执行程序 CPU 构架，包括 386，amd64，arm，arm64
 
 示例：
-$ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build test.go
-$ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build test.go
-$ CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build test.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app main.go
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o app main.go
+CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o app main.go
 
 Golang version 1.5以前版本在首次交叉编译时还需要配置交叉编译环境：
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash
@@ -301,5 +317,19 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
 | --------------------------------------- | ------ | ------------------------------------------------------------ |
 | [Viper](https://github.com/spf13/viper) |        | 功能全面的配置处理库，支持多种配置获取方式：文件、服务、环境变量 |
 | [cobra](https://github.com/spf13/cobra) |        | cli 开发工具库                                               |
-|                                         |        |                                                              |
+| pdfcpu                                  |        | 处理 pdf 文件（加水印、拆分）                                |
+| ImageMagick                             |        | [参考](https://jelly.jd.com/article/5c34081bd7aa2c0055d09a71) |
+
+## 代码片段
+
+创建文件的同时创建不存在的目录
+
+```go
+func CreateFileWithFolder(p string) (*os.File, error) {
+	if err := os.MkdirAll(filepath.Dir(p), 0770); err != nil {
+		return nil, err
+	}
+	return os.Create(p)
+}
+```
 
